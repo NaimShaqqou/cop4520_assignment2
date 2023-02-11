@@ -3,6 +3,7 @@
 #include <vector>
 #include <chrono>
 #include <atomic>
+#include <mutex>
 
 #define N 100
 
@@ -10,6 +11,7 @@ using namespace std;
 using namespace std::chrono;
 
 atomic<bool> cupCake{true};
+mutex m;
 
 int main()
 {
@@ -29,12 +31,14 @@ int main()
                     // cout << "decider has entered\n";
                 }
 
+                m.lock();
                 if (!cupCake)
                 {
                     // cout << "pow\n";
                     cupCake = true;
                     numSeen++;
                 }
+                m.unlock();
             }
             else
             {
@@ -44,12 +48,14 @@ int main()
                     continue;
                 }
                 
+                m.lock();
                 if (cupCake && !alreadyEntered)
                 {
                     // cout << "boom\n";
                     cupCake = false;
                     alreadyEntered = true;
                 }
+                m.unlock();
             }
         }
     };
