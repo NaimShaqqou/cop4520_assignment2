@@ -5,18 +5,34 @@
 #include <atomic>
 #include <mutex>
 
-#define N 100
+#define N 100 // number of guests
 
 using namespace std;
 using namespace std::chrono;
 
+// true -> not eaten
+// false -> eaten
 atomic<bool> cupCake{true};
 mutex m;
 
 int main()
 {
+    // This is the number of unique guests who
+    // entered the labyrinth
     atomic<int> numSeen{0};
-
+    
+    /*
+        - One of the guests will be appointed as the "decider".
+          The decider's job is to count the number of unique guests who
+          entered the labyrinth. 
+        - Each guest (except for the decider) eats the cupcake ONLY ONCE.
+        - If a guest enters the labyrinth and finds that the cupcake is eaten, they
+          do nothing. They can eat it when the minotaur brings out a new one.
+        - If the decider enters the room and finds the cupcake has been eaten,
+          they can guarantee that one NEW UNIQUE guest has entered the room.
+        - As soon as the cupcake has been eaten N times, the decider knows that
+          all N guests have entered the labyrinth 
+    */
     auto strategy = [&](bool isDecider)
     {
         bool alreadyEntered = false;
@@ -28,13 +44,11 @@ int main()
                 {
                     numSeen++;
                     alreadyEntered = true;
-                    // cout << "decider has entered\n";
                 }
 
                 m.lock();
                 if (!cupCake)
                 {
-                    // cout << "pow\n";
                     cupCake = true;
                     numSeen++;
                 }
@@ -43,15 +57,11 @@ int main()
             else
             {
                 if (numSeen == 0)
-                {
-                    // cout << "alreadyEntered\n";
                     continue;
-                }
                 
                 m.lock();
                 if (cupCake && !alreadyEntered)
                 {
-                    // cout << "boom\n";
                     cupCake = false;
                     alreadyEntered = true;
                 }
