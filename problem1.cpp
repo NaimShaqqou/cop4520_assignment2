@@ -86,7 +86,8 @@ int main()
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
 
-    cout << duration.count() / 1e+3 << endl;
+    cout << "All guests have entered the labyrinth.\n";
+    cout << "Runtime: " << duration.count() / 1e+3 << " seconds" << endl;
 
     return 0;
 }
