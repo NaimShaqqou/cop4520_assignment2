@@ -56,9 +56,6 @@ int main()
             }
             else
             {
-                if (numSeen == 0)
-                    continue;
-                
                 m.lock();
                 if (cupCake && !alreadyEntered)
                 {
