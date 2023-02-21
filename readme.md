@@ -35,7 +35,7 @@ I tested the runtime of the program taking the average runtime over `1000` trial
 ```
 16 threads: less than 0.001 seconds
 32 threads: 0.003 seconds
-100 threds: 0.034 seconds
+100 threads: 0.034 seconds
 1000 threads: 7.584 seconds
 ```
 
@@ -81,14 +81,13 @@ In this simulation:
 
 #### Runtime
 
-I tested the runtime of the program taking the average runtime over `1000` trials. Below are the runtime results of the program for different number of threads:
+I tested the runtime of the program taking the average runtime over `10` trials. Below are the runtime results of the program for different number of threads:
 
 _Note: each thread will sleep for at least 1 second (the time the guest spends in the room), so that will affect the runtime of the program._
 
 ```
-(Update these values)
-16 threads: less than 0.001 seconds
-32 threads: 0.003 seconds
-100 threds: 0.034 seconds
-1000 threads: 7.584 seconds
+4 threads: 4.013 seconds
+8 threads: 9.038 seconds
+32 threads: 33.128 seconds
+100 threads: 102.324 seconds
 ```
