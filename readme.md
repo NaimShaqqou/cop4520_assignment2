@@ -6,7 +6,7 @@
 Use the following commands to run the program:
 
 ```
-g++ -std=c++20 -pthread problem1.cpp
+g++ -std=c++2a -pthread problem1.cpp
 ./a.out
 ```
 
@@ -45,7 +45,7 @@ I tested the runtime of the program taking the average runtime over `1000` trial
 Use the following commands to run the program:
 
 ```
-g++ -std=c++20 -pthread problem2.cpp
+g++ -std=c++2a -pthread problem2.cpp
 ./a.out
 ```
 
@@ -75,15 +75,13 @@ In our case, the `isAvailable` variable was the critical section of the code. Th
 
 In this simulation:
 - We have 4 guests at the party. This number is arbitrary and can be modified by changing the value of `N`.
-- We are simulating the time each guest takes inside the room by sleeping the thread for 1 second.
-- We stop the simulation when each guest enters the room once. The code can be easily modified to more accurately simulate a party by having each guest enter the room a different number of times than other guests (or zero times). However, this does not fundamentally affect how the protocol functions.
+- We are simulating the time each guest takes inside the room by sleeping the thread for 0.1 second.
+- Each guest will enter the room at least once. After that, each guest has a 50% chance of wanting to enter the room again. This is to simulate the fact that some guests might want to see the vase more than once.
 - We use print statements to visualize when guests enter/exit the room or check the sign.
 
 #### Runtime
 
 I tested the runtime of the program taking the average runtime over `10` trials. Below are the runtime results of the program for different number of threads:
-
-_Note: each thread will sleep for at least 1 second (the time the guest spends in the room), so that will affect the runtime of the program._
 
 ```
 4 threads: 4.013 seconds
