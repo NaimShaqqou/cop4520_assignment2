@@ -6,7 +6,7 @@
 #include <mutex>
 #include <stdio.h>
 
-#define N 100
+#define N 4
 
 using namespace std;
 using namespace std::chrono;
@@ -27,9 +27,9 @@ int main()
             m.lock();
             if (isAvailable)
             {
-                printf("\nGuest %d noticed that the sign reads \"AVAILABLE\" and entered the room.\n", guest);
+                //printf("\nGuest %d noticed that the sign reads \"AVAILABLE\" and entered the room.\n", guest);
                 isAvailable = false;
-                printf("Guest %d set the sign to \"BUSY\".\n", guest);
+                //printf("Guest %d set the sign to \"BUSY\".\n", guest);
                 m.unlock();
 
                 // to simulate the time it takes to admire the vase
@@ -40,7 +40,7 @@ int main()
                 
                 m.lock();
                 isAvailable = true;
-                printf("Guest %d set the sign to \"AVAILABLE\" and exited the room.\n", guest);
+                //printf("Guest %d set the sign to \"AVAILABLE\" and exited the room.\n", guest);
                 m.unlock();
 
                 continue;
@@ -48,7 +48,7 @@ int main()
             m.unlock();
             
             // we will only get to this part of the code if the guest checked the sign and saw that it was busy
-            printf("Guest %d noticed that the sign reads \"BUSY\", so they continue roaming the castle.\n", guest);
+            // printf("Guest %d noticed that the sign reads \"BUSY\", so they continue roaming the castle.\n", guest);
 
             // simulate the guest roaming the castle
             this_thread::sleep_for(milliseconds(100));

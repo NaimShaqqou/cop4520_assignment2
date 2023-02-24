@@ -84,8 +84,8 @@ In this simulation:
 I tested the runtime of the program taking the average runtime over `10` trials. Below are the runtime results of the program for different number of threads:
 
 ```
-4 threads: 4.013 seconds
-8 threads: 9.038 seconds
-32 threads: 33.128 seconds
-100 threads: 102.324 seconds
+4 threads: 0.601 seconds
+8 threads: 1.602 seconds
+32 threads: 6.609 seconds
+100 threads: 20.726 seconds
 ```
